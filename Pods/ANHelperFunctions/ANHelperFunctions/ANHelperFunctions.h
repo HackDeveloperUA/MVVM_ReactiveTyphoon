@@ -7,7 +7,11 @@
 
 #import "ANDefines.h"
 
-
+/**
+ *  Execute block on main thread
+ *
+ *  @ param ANCodeBlock block for execution
+ */
 void ANDispatchBlockToMainQueue(ANCodeBlock);
 
 

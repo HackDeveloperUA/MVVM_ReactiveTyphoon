@@ -15,3 +15,4 @@
 
 @end
 
+// warning: directory not found for option '-F/build/Debug-iphoneos'

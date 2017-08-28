@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HDWorkerDetailVMPrtcl;
+#import "HDWorkerDetailVMPrtcl.h"
 
 @protocol HDDetailVCPrtcl <NSObject>
 

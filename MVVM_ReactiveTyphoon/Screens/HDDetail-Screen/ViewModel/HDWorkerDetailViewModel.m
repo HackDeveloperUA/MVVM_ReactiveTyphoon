@@ -30,12 +30,12 @@
     self = [super init];
     if (self) {
         
-        self.model = worker;
+        self.modelWorker = worker;
         
-        self.fullNameTitle =  [NSString stringWithFormat:@"%@ %@",_model.firstName, _model.lastName];
-        self.postTitle     = self.model.postInCompany;
-        self.mainTextTitle = self.model.mainText;
-        self.cvImageURL    = self.model.photoURL;
+        self.fullNameTitle =  [NSString stringWithFormat:@"%@ %@",_modelWorker.firstName, _modelWorker.lastName];
+        self.postTitle     = self.modelWorker.postInCompany;
+        self.mainTextTitle = self.modelWorker.mainText;
+        self.cvImageURL    = self.modelWorker.photoURL;
     }
     return self;
 }
@@ -56,70 +56,16 @@
 
 - (void)bindSignals
 {
-    if (self.model)
+    if (self.modelWorker)
     {
         @weakify(self);
         
 #warning Почему он не работает ? В классе ViewModel_Worker_Cell в методе bindSignals, используется точно такой же подход, только там работает, а тут нет ...
-        
-        // Первый способ. - Не работает
-        /*
-        RACSignal *workerSingal = [RACSignal return: self.model];
-       
-        self.fullName_Signal = [workerSingal map:^NSString*(WorkerFull* worker) {
-            return [NSString stringWithFormat:@"%@ %@",worker.firstName, worker.lastName];
-        }];
-        self.postTitle_Signal = [workerSingal map:^NSString*(WorkerFull* worker) {
-            return worker.postInCompany;
-        }];
-        self.mainText_Signal = [workerSingal map:^NSString*(WorkerFull* worker) {
-            return worker.postInCompany;
-        }];
-        */
-        
-        
-        // Второй способ. - Не работает
-        /*
-        RACChannelTo(self, fullNameTitle) = RACChannelTo(self.model, firstName);
-        RACChannelTo(self, postTitle)     = RACChannelTo(self.model, postInCompany);
-        RACChannelTo(self, mainTextTitle) = RACChannelTo(self.model, mainText);
-        */
-
-        
-        // Третий способ. - Не работает
-        /*
-        RACChannelTerminal *channelA = RACChannelTo(self, fullNameTitle);
-        RACChannelTerminal *channelB = RACChannelTo(self.model, firstName);
-        [channelA subscribe: channelB];
-        [channelB subscribe: channelA];
-        */
-        
-        
-        // Четвертый способ. - Не работает
-        /*
-        RAC(self, fullNameTitle) = RACObserve(self.model, firstName);
-        RAC(self, postTitle)     = RACObserve(self.model, postInCompany);
-        RAC(self, mainTextTitle) = RACObserve(self.model, mainText);
-        */
-        
-        
-        // Пятый способ.
-        /*
-        RAC(self, fullNameTitle) = [RACSignal combineLatest:@[RACObserve(self.model, firstName),
-                                                              RACObserve(self.model, lastName)]
-                                                     reduce:^id(id fName, id lName){
-                                                         NSLog(@"id fName, id lName = %@ %@",fName,lName);
-                                                         return [NSString stringWithFormat:@"%@ %@",fName, lName];
-                                                     }];
-        RAC(self,postTitle)     = RACObserve(self.model, postInCompany);
-        RAC(self,mainTextTitle) = RACObserve(self.model, mainText);
-        RAC(self,cvImageURL)    = RACObserve(self.model, photoURL);
-        */
 
 
         // Шестой способ
-        [[RACSignal combineLatest:@[RACObserve(self.model, firstName),
-                                   RACObserve(self.model, lastName)]
+        [[RACSignal combineLatest:@[RACObserve(self.modelWorker, firstName),
+                                   RACObserve(self.modelWorker, lastName)]
                           reduce:^id(id fName, id lName){
                               NSLog(@"reduuce = %@", [NSString stringWithFormat:@"%@ %@",fName, lName]);
                               return [NSString stringWithFormat:@"%@ %@",fName, lName];
@@ -128,15 +74,15 @@
                               NSLog(@"subscribeNext = %@",x);
                               self.fullNameTitle = x;
                           }];
-        [RACObserve(self.model, postInCompany) subscribeNext:^(id x) {
+        [RACObserve(self.modelWorker, postInCompany) subscribeNext:^(id x) {
             @strongify(self);
             self.postTitle = x;
         }];
-        [RACObserve(self.model, mainText) subscribeNext:^(id x) {
+        [RACObserve(self.modelWorker, mainText) subscribeNext:^(id x) {
             @strongify(self);
             self.mainTextTitle = x;
         }];
-        [RACObserve(self.model, photoURL) subscribeNext:^(id x) {
+        [RACObserve(self.modelWorker, photoURL) subscribeNext:^(id x) {
             @strongify(self);
             self.cvImageURL = x;
         }];
@@ -154,7 +100,7 @@
 
 - (void) goToPscychedelicTVC_Clicked
 {
-    [[HDRouter sharedRouter] openPsychedelicDetailTVC:self.model];
+    [[HDRouter sharedRouter] openPsychedelicDetailTVC:self.modelWorker];
 }
 
 #pragma mark - API
@@ -172,14 +118,14 @@
     _linkOnFullCV = linkOnFullCV;
     [[self get_FullWorkerModelByLink:linkOnFullCV] subscribeNext:^(HDWorkerFull* x) {
         
-        self.model = x;
+        self.modelWorker = x;
         self.fullNameTitle = x.firstName;
     }];
 }
 
-- (void) setModel:(HDWorkerFull *)model
+- (void) setModelWorker:(HDWorkerFull *)model
 {
-    _model = model;
+    _modelWorker = model;
     [self bindSignals];
 }
 

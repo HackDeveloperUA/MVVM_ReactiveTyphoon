@@ -8,8 +8,13 @@
 
 //#import <Typhoon/Typhoon.h>
 
-//#import <Typhoon/Typhoon.h>
-#import <Foundation/Foundation.h>
-@interface HDLoginAndRegistrationStoriesAssembly : NSObject//TyphoonAssembly
+#import <Typhoon/Typhoon.h>
+
+// Protocol Controller
+#import "HDLoginVCPrtcl.h"
+
+@interface HDLoginAndRegistrationStoriesAssembly : TyphoonAssembly
+
+- (id <HDLoginVCPrtcl>) getHDLoginVC;
 
 @end

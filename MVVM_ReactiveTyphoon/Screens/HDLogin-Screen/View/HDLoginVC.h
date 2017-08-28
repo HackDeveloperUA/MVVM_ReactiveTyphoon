@@ -29,6 +29,7 @@
 @interface HDLoginVC : UIViewController
 
 @property (strong, nonatomic) HDAccountsDataViewModel* vmAccountsData;
-@property (strong, nonatomic) MBProgressHUD *HUD;
+
+- (void) setupUI;
 
 @end

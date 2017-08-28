@@ -13,6 +13,9 @@
 
 @interface HDLoginVC ()
 
+@property (strong, nonatomic) MBProgressHUD *HUD;
+
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *grayView;
 

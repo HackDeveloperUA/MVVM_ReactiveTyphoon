@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HDListOfWorkersTableVMPrtcl;
+#import "HDListOfWorkersTableVMPrtcl.h"
 
 @protocol HDWorkerTVCPrtcl <NSObject>
 

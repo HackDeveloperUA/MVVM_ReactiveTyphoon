@@ -8,6 +8,12 @@
 
 #import <Typhoon/Typhoon.h>
 
+
+// Protocol Controller
+#import "HDPsychedelicDetailTVCPrtcl.h"
+
 @interface HDPscychedelicDetailStoriesAssembly : TyphoonAssembly
+
+- (id <HDPsychedelicDetailTVCPrtcl>) getHDPsychedelicDetailTVC:(HDWorkerFull*) model;
 
 @end

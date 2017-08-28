@@ -8,6 +8,11 @@
 
 #import <Typhoon/Typhoon.h>
 
+// Protocol Controllers
+#import "HDWorkerTVCPrtcl.h"
+
 @interface HDWorkerStoriesAssembly : TyphoonAssembly
+
+- (id <HDWorkerTVCPrtcl>) getHDWorkerTVC;
 
 @end

@@ -24,6 +24,20 @@
 #import "HDWorkerFull.h"
 #import "HDPhotoModel.h"
 
+
+// Controllers Protocol
+#import "HDLoginVCPrtcl.h"
+#import "HDWorkerTVCPrtcl.h"
+#import "HDDetailVCPrtcl.h"
+#import "HDPsychedelicDetailTVCPrtcl.h"
+
+
+// Typhoon Fabric
+#import "HDLoginAndRegistrationStoriesAssembly.h" // HDLoginVC
+#import "HDWorkerStoriesAssembly.h"               // HDWorkerTVC
+#import "HDDetailStoriesAssembly.h"               // HDDetailVC
+#import "HDPscychedelicDetailStoriesAssembly.h"   // HDPsychedelicDetailTVC
+
 @implementation HDRouter
 
 #pragma mark - Core
@@ -58,10 +72,17 @@
 
 - (void) openLoginVC
 {
+    /*
     HDLoginVC* vc = [[HDLoginVC alloc] init];
     vc.vmAccountsData       = [[HDAccountsDataViewModel alloc] init];
     
     [HDRouter setToRootView:vc andAnimationOptions:UIViewAnimationOptionTransitionFlipFromLeft];
+    */
+    
+    HDLoginAndRegistrationStoriesAssembly* factory = [[HDLoginAndRegistrationStoriesAssembly new] activated];
+    id <HDLoginVCPrtcl> vc = [factory getHDLoginVC];
+   
+    [HDRouter setToRootView:(UIViewController*) vc andAnimationOptions:UIViewAnimationOptionTransitionFlipFromLeft];
 }
 
 
@@ -76,24 +97,32 @@
 
 - (void) openDetailVCwithLinkOnFullCV:(NSString*) link;
 {
-    // Вытащить linkOnCV
+    /*
+    HDDetailStoriesAssembly* factory = [[HDDetailStoriesAssembly new] activated];
+    id <HDDetailVCPrtcl> vc = [factory getHDDetailVCWithLinkOnFullCV:link];
+    */
+    
     HDDetailVC* vc = [HDDetailVC new];
     vc.vmWorkerDetail = [[HDWorkerDetailViewModel alloc] initWithLinkOnFull_CV_Model: link];
     
+    
     if ([self haveControllerForMenuInMemory]){
-        [HDRouter pushTo:vc inNavContr:self.mainNavContr];
+        [HDRouter pushTo:(UIViewController*)vc inNavContr:self.mainNavContr];
     }
 }
 
 - (void) openPsychedelicDetailTVC:(HDWorkerFull*) workerModel
 {
+    /*
     HDListOfPsychedelicWorkersTableViewModel* vm = [[HDListOfPsychedelicWorkersTableViewModel alloc] initWithWorker:workerModel];
     
     HDPsychedelicDetailTVC* vc = [[HDPsychedelicDetailTVC alloc] initWithVM:vm];
-    
+    */
+    HDPscychedelicDetailStoriesAssembly* factory = [[HDPscychedelicDetailStoriesAssembly new] activated];
+    id<HDPsychedelicDetailTVCPrtcl> vc = [factory getHDPsychedelicDetailTVC:workerModel];
     
     if ([self haveControllerForMenuInMemory]){
-        [HDRouter pushTo:vc inNavContr:self.mainNavContr];
+        [HDRouter pushTo:(UIViewController*)vc inNavContr:self.mainNavContr];
     }
 }
 
@@ -131,16 +160,21 @@
 
 - (void) initInMemoryControllersForMenu
 {
-    self.mainWorkersTVC = [[HDWorkerTVC alloc] init];
-    self.mainWorkersTVC.vmListOfWorkersTableView = [[HDListOfWorkersTableViewModel alloc] init];
-    self.mainNavContr = [[UINavigationController alloc] initWithRootViewController: _mainWorkersTVC];
+    HDWorkerStoriesAssembly* factory = [[HDWorkerStoriesAssembly new] activated];
+    id <HDWorkerTVCPrtcl> vc = [factory getHDWorkerTVC];
+    self.mainWorkersTVC = (HDWorkerTVC*)vc;
     
-    self.mainNavContr.navigationBar.barTintColor = [UIColor lightGrayColor];
-    self.mainNavContr.navigationBar.tintColor = [UIColor whiteColor];
-    [self.mainNavContr.navigationBar setTitleTextAttributes:  @{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                                NSFontAttributeName:[UIFont fontWithName:@"Avenir Next" size:18]}];
+    self.mainNavContr = [[UINavigationController alloc] initWithRootViewController: _mainWorkersTVC];
+    [self setLightStyleForUINavigationController:self.mainNavContr];
 }
 
+- (void) setLightStyleForUINavigationController:(UINavigationController*) navContr
+{
+    navContr.navigationBar.barTintColor = [UIColor lightGrayColor];
+    navContr.navigationBar.tintColor = [UIColor whiteColor];
+    [navContr.navigationBar setTitleTextAttributes:  @{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                                NSFontAttributeName:[UIFont fontWithName:@"Avenir Next" size:18]}];
+}
 
 - (void) removeFromMemoryControllersForMenu
 {

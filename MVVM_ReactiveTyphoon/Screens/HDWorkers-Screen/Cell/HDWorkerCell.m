@@ -60,23 +60,7 @@
         }];
     });
         
-    _vmWorkerCell = vm;
-
-    // 1 - Вариант - Скачивание с помощью стандартного NSURLConnection
-    /*
-     [vm.cvImageURLSignal subscribeNext:^(id x) {
-     
-         NSURL* url = [NSURL URLWithString:x];
-         
-         [[[self rac_imageWithURL:url] takeUntil:self.rac_prepareForReuseSignal] 
-                                   subscribeNext:^(UIImage* img) {
-         
-          _cvPhotoImageView.layer.cornerRadius = img.size.width/36;
-          _cvPhotoImageView.image = img;
-         }];
-     }];
-     */
-    
+    _vmWorkerCell = vm;    
 }
 
 #pragma mark - download image

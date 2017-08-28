@@ -19,7 +19,7 @@
 @interface HDWorkerDetailViewModel : NSObject
 
 // Link on model
-@property (nonatomic, strong) HDWorkerFull *model;
+@property (nonatomic, strong) HDWorkerFull *modelWorker;
 
 @property (nonatomic, strong) NSString* fullNameTitle;
 @property (nonatomic, strong) NSString* postTitle;

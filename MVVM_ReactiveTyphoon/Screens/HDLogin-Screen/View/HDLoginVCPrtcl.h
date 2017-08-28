@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class MBProgressHUD;
-@class HDAccountsDataViewModel;
 
+#import "HDAccountsDataVMPrtcl.h"
 
 @protocol HDLoginVCPrtcl <NSObject>
 
-@property (strong, nonatomic) HDAccountsDataViewModel* vmAccountsData;
-@property (strong, nonatomic) MBProgressHUD *HUD;
+@property (strong, nonatomic) id<HDAccountsDataVMPrtcl> vmAccountsData;
 
 @end

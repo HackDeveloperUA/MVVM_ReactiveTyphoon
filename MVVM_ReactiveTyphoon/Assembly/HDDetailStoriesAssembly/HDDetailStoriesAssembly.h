@@ -8,6 +8,11 @@
 
 #import <Typhoon/Typhoon.h>
 
+// Protocol ViewController
+#import "HDDetailVCPrtcl.h"
+
 @interface HDDetailStoriesAssembly : TyphoonAssembly
+
+- (id <HDDetailVCPrtcl>) getHDDetailVCWithLinkOnFullCV:(NSString*) link;
 
 @end

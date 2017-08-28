@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HDWorkerFull;
+#import "HDWorkerFull.h"
 
 @protocol HDListOfPsychedelicWorkersTableVMPrtcl <NSObject>
 

@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class HDListOfPsychedelicWorkersTableVMPrtcl;
+#import "HDListOfPsychedelicWorkersTableVMPrtcl.h"
 
 @protocol HDPsychedelicDetailTVCPrtcl <NSObject>
 
-@property(nonatomic, strong) id <HDListOfPsychedelicWorkersTableVMPrtcl>
+@property(nonatomic, strong) id <HDListOfPsychedelicWorkersTableVMPrtcl> vmListOfPsychedelicWorkersTableView;
 
 @end

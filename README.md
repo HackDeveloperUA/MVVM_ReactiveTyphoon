@@ -7,10 +7,10 @@ RU:
 
 Приложение состоит из четырех экранов.
 
-- 1. LoginVC
-- 2. WorkerTVC
-- 3. DetailVC
-- 4. PsychedelicDetailTVC
+- 1. HDLoginVC
+- 2. HDWorkerTVC
+- 3. HDDetailVC
+- 4. HDPsychedelicDetailTVC
 
 1. Процесс псевдо аунтификации
 2. Отображения на таблицы списка всех топ работников Apple
@@ -24,10 +24,10 @@ EN:
  ### Test project which shows how MVVM works on the iOS platform.
  The application consists of four screens.
 
--  1. LoginVC
--  2. WorkerTVC
--  3. DetailVC
--  4. PsychedelicDetailTVC
+-  1. HDLoginVC
+-  2. HDWorkerTVC
+-  3. HDDetailVC
+-  4. HDPsychedelicDetailTVC
 
 1. Process pseudo auntefication
 2. Display on table list of all the top Apple employees

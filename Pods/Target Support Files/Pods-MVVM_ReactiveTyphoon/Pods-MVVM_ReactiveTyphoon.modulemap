@@ -1,0 +1,6 @@
+framework module Pods_MVVM_ReactiveTyphoon {
+  umbrella header "Pods-MVVM_ReactiveTyphoon-umbrella.h"
+
+  export *
+  module * { export * }
+}

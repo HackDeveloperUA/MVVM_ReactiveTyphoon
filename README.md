@@ -1,5 +1,5 @@
-# Classical_MVVM_-NonReactive-
-Implementation of the MVVM pattern on iOS. (Without Reactive-Cocoa)
+# MVVM_ReactiveTyphoon
+Implementation of the MVVM pattern on iOS. (With Reactive-Cocoa and Typhoon fraemwork)
 
 RU:
 
@@ -58,7 +58,7 @@ pod install
 
 ### Экраны / Screens:
 
-| LoginVC  | MainTVC  |      DetailVC    | PsychedelicDetailTVC    |
+| HDLoginVC  | HDWorkerTVC  |      HDDetailVC    | HDPsychedelicDetailTVC    |
 | ------------- | ------------- | ------------- |  ------------- |
 | ![alt text](https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Screenshots/1-screen.png)     |    ![alt text](https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Screenshots/2-screen.png)  |  ![alt text](https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Screenshots/3-screen.png)  |  ![alt text](https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Screenshots/4-screen.png)  |
 
@@ -66,12 +66,5 @@ pod install
 
 
 
-## Class diagram of the application
-
-
-[Link on full size picture](
-(https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Class%20diagram%20of%20the%20application.png)
-
-![alt text](https://raw.githubusercontent.com/HackDeveloperUA/Classical_MVVM_-NonReactive-/master/Documentation/Class%20diagram%20of%20the%20application.png)
 
 

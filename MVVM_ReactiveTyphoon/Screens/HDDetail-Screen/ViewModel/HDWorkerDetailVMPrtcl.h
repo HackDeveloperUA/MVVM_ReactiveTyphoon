@@ -15,7 +15,4 @@
 @property (nonatomic, strong) HDWorkerFull *model;
 @property (nonatomic, strong) NSString* linkOnFullCV;
 
-- (instancetype)initWithWorker:(HDWorkerFull*) worker;
-- (instancetype)initWithLinkOnFull_CV_Model:(NSString*) link;
-
 @end
